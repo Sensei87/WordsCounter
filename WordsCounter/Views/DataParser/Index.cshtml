@@ -1,0 +1,24 @@
+﻿@model WordsCounter.Models.DataParser
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Counter</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+</head>
+<body>
+    <div class="text-center">
+      <form method="post">
+        <label>Input reference</label><br />
+        <input type="text" name="reference" /><br /><br />
+        <label>Enter the number of matches</label><br />
+        <input type="number" name="wordCount" /> <br />
+        <input type="submit" value="Analyze" />
+      </form>
+    </div>
+</body>
+</html>
