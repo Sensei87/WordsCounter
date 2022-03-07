@@ -41,8 +41,8 @@ namespace WordsCounter.Controllers
                
             }
                   
-            var dataFinal =  dataParser.Percent;
-            return Content(dataFinal);
+            var finalResult =  dataParser.Percent;
+            return Content(finalResult);
         }
 
 
