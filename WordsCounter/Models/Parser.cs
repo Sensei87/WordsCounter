@@ -1,10 +1,9 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
+
 
 namespace WordsCounter.Models
 {
@@ -17,25 +16,18 @@ namespace WordsCounter.Models
             try
             {
                 WebClient client = new WebClient();
-                Stream stream = client.OpenRead(data);
-                StreamReader sr = new StreamReader(stream);
-
-                string newString;
-                while ((newString = sr.ReadLine()) != null)
+                byte[] raw = client.DownloadData(data);
+                string webData = System.Text.Encoding.UTF8.GetString(raw);
+                var document = new HtmlDocument();
+                document.LoadHtml(webData);
+                var pageText = document.DocumentNode.InnerText;
+                if(!String.IsNullOrEmpty(pageText))
                 {
-                    var match = TagsUsingRegex(newString).Trim().Replace("$","").Replace(",","")
-                        .Replace("[", "").Replace("{", "").Replace("}", "").Replace("]", "")
-                        .Replace("||", "").Replace("(", "").Replace(")", "").Replace(";", "")
-                        .Replace("*", "").Replace("/", "").Replace("-->", "").Replace("&", "")
-                        .Replace("the", "").Replace("a", "").Replace("an", "").Replace("at", "");
-                    var findNullOfSpace = string.IsNullOrWhiteSpace(match);
-                    if (!findNullOfSpace)
-                        list.Add(match);
+                    var match = TagsUsingRegex(pageText);
+                   
+                    list.Add(match);
+                    
                 }
-
-                stream.Close();
-
-                list.Sort();
 
             }
             catch (Exception ex)
@@ -48,7 +40,7 @@ namespace WordsCounter.Models
         }
         // Regex pattern
         string TagsUsingRegex(string inputString) =>
-         Regex.Replace(inputString, @"(?:<).*?(?:>)", String.Empty);
+         Regex.Replace(inputString, @"\s+", " ");
 
         // Count number of words
         public List<string> NumberOfWords(string text)
