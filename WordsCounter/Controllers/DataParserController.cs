@@ -24,25 +24,44 @@ namespace WordsCounter.Controllers
         [HttpPost]
         public IActionResult Index(string reference, int wordCount)
         {
-          
+
             var list = parser.Pars(reference);
-            var linqQuery = from tree in list where tree.Length == wordCount select tree;
-           
-           
-            foreach (var item in linqQuery)
+            List<string> finalData = new List<string>();
+
+            foreach (var n in list)
+                dataParser.Data += n;
+
+            switch (wordCount)
             {
-                dataParser.Data += "\n " + item;
+                case 1:
+                    {
+                        finalData = parser.OneMutchesOfWord(dataParser.Data);
+                        break;
+                    }
+                case 2:
+                    {
+                        finalData = parser.TwoMutchesOfWords(dataParser.Data);
+                        break;
+                    }
+                case 3:
+                    {
+                        finalData = parser.ThreeMutchesOfWords(dataParser.Data);
+                        break;
+                    }
+                default:
+                    {
+                        finalData.Add("No mutches for your request!");
+                        break;
+                    }
             }
-            string data = dataParser.Data;
-            var finalData = parser.NumberOfWords(data);
+
             foreach(var item in finalData)
             {
-                dataParser.Percent += "\n " + item + " words";
+                dataParser.Percent += item;
                
             }
-                  
-            var finalResult =  dataParser.Percent;
-            return Content(finalResult);
+            
+            return Content(dataParser.Percent);
         }
 
 

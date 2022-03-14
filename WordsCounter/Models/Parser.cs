@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
+using System.Linq;
 
 
 namespace WordsCounter.Models
@@ -23,12 +24,25 @@ namespace WordsCounter.Models
                 var pageText = document.DocumentNode.InnerText;
                 if(!String.IsNullOrEmpty(pageText))
                 {
-                    var match = TagsUsingRegex(pageText);
+                    var match = TagsUsingRegex(pageText).ToLower();
                    
+                    string[] s = match.Split(" ", StringSplitOptions.RemoveEmptyEntries);
+                    
+                    string[] articles = {"an", "the", "is", "in", "at" , "-", "&", "?", "|" };
+                    for(int i = 0; i < s.Length; i++)
+                    {
+                        for(int j = 0; j < articles.Length; j++)
+                        {
+                            if(articles[j] == s[i])
+                            {
+                                match = match.Replace(s[i], "");
+                            }
+                        }
+                    }
                     list.Add(match);
                     
                 }
-
+                
             }
             catch (Exception ex)
             {
@@ -42,45 +56,44 @@ namespace WordsCounter.Models
         string TagsUsingRegex(string inputString) =>
          Regex.Replace(inputString, @"\s+", " ");
 
-        // Count number of words
-        public List<string> NumberOfWords(string text)
+        // Count mutches one words
+        public List<string> OneMutchesOfWord(string text)
         {
-            var sorted = new SortedList<string, int>(StringComparer.OrdinalIgnoreCase);
+            
             var list = new List<string>();
-            if (text == null)
+            string[] source = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
+                StringSplitOptions.RemoveEmptyEntries);
+            string result = "";
+            var finalPercent = 0.0;
+            for (int i = 0; i < source.Length-1; i++)
             {
-                list.Add("No match for your request");
-                return list;
-            }
-            foreach (var item in text.Split())
-            {
-                if (sorted.ContainsKey(item))
-                {
-                    sorted[item]++;
-                }
-                else
-                {
-                    sorted.Add(item, 1);
-                }
-                
-            }
-            int[] counter = new int[sorted.Capacity];
-            int index = 0;
-            var finalPercent = 0M;
-            foreach (var item in sorted)
-            {
-                if (item.Value == 0 || item.Value > 10) continue;
-                counter[index] += item.Value;
-                finalPercent = counter[index] * 100M / sorted.Capacity;
-                index++;
-               
-                list.Add(finalPercent + "%  " + item.Key + "  " + item.Value);
+                var match = from word in source where word
+                            .ToLowerInvariant() == source[i].ToLowerInvariant() select word;
+                finalPercent = match.Count() * 100.0 / source.Length;
+                finalPercent = Math.Round(finalPercent, 2);
+                result += "\n "+ i + ". " + source[i] + " [ " + match.Count() + " words.] (" + finalPercent + " %)";
                
             }
+            list.Add(result);
 
             return list;
         }
 
-        
+        // Count mutches two words
+        public List<string> TwoMutchesOfWords(string text)
+        {
+            var list = new List<string>();
+            return list;
+        }
+
+        // Count mutches three words
+        public List<string> ThreeMutchesOfWords(string text)
+        {
+            var list = new List<string>();
+            return list;
+        }
+
+
+
     }
 }

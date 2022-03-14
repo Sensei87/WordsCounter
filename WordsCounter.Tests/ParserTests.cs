@@ -43,7 +43,7 @@ namespace WordsCounter.Tests
             var sorted = new SortedList<string, int>(StringComparer.OrdinalIgnoreCase);
 
             // Act
-            var pars = _parser.NumberOfWords(text);
+            var pars = _parser.OneMutchesOfWord(text);
            
 
             foreach (var item in text.Split())

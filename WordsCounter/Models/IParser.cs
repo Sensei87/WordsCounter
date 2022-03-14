@@ -8,7 +8,10 @@ namespace WordsCounter.Models
     public interface IParser
     {
         List<string> Pars(string data);
-        List<string> NumberOfWords(string text);
-      
+        List<string> OneMutchesOfWord(string text);
+        List<string> TwoMutchesOfWords(string text);
+        List<string> ThreeMutchesOfWords(string text);
+
+
     }
 }
