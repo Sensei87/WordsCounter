@@ -107,7 +107,7 @@ namespace WordsCounter.Models
             }
             try
             {
-                string[] source = text.Split(" ",
+                string[] source = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
                   StringSplitOptions.RemoveEmptyEntries);
 
                 string sourceOne = "";
@@ -146,7 +146,7 @@ namespace WordsCounter.Models
             try
             {
 
-                string[] source = text.Split(" ",
+                string[] source = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
                   StringSplitOptions.RemoveEmptyEntries);
 
                 string sourceOne = "";
