@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using WordsCounter.Models;
+using WordsCounter.Repository;
 
 namespace WordsCounter.Controllers
 {

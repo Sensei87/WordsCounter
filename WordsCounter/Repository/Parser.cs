@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Linq;
 
 
-namespace WordsCounter.Models
+namespace WordsCounter.Repository
 {
     public class Parser : IParser
     {
@@ -22,33 +22,33 @@ namespace WordsCounter.Models
                 var document = new HtmlDocument();
                 document.LoadHtml(webData);
                 var pageText = document.DocumentNode.InnerText;
-                if(!String.IsNullOrEmpty(pageText))
+                if (!String.IsNullOrEmpty(pageText))
                 {
                     var match = TagsUsingRegex(pageText).ToLower();
-                   
+
                     string[] splitArray = match.Split(" ", StringSplitOptions.RemoveEmptyEntries);
-                    
-                    string[] articles = {"an", "the", "is", "in", "at" , "-", "&", "?", "|" };
-                    for(int i = 0; i < splitArray.Length; i++)
+
+                    string[] articles = { "an", "the", "is", "in", "at", "-", "&", "?", "|" };
+                    for (int i = 0; i < splitArray.Length; i++)
                     {
-                        for(int j = 0; j < articles.Length; j++)
+                        for (int j = 0; j < articles.Length; j++)
                         {
-                            if(articles[j] == splitArray[i])
+                            if (articles[j] == splitArray[i])
                             {
                                 match = match.Replace(splitArray[i], "");
                             }
                         }
                     }
                     list.Add(match);
-                    
+
                 }
-                
+
             }
             catch (Exception ex)
             {
                 _ = ex.Message;
             }
-           
+
             return list;
 
         }
@@ -71,7 +71,7 @@ namespace WordsCounter.Models
             {
                 string[] source = text.Split(new char[] { '.', '?', '!', ' ', ';', ':', ',' },
                     StringSplitOptions.RemoveEmptyEntries);
-               
+
                 var finalPercent = 0.0;
                 int counter = 1;
                 for (int i = 0; i < source.Length; i++)
@@ -85,8 +85,9 @@ namespace WordsCounter.Models
                     result += "\n " + counter + ". " + source[i] + " [" + match.Count() + " words] (" + finalPercent + " %)";
                     counter++;
                 }
-               
-            } catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 result += ex.Message;
             }
@@ -111,7 +112,7 @@ namespace WordsCounter.Models
                   StringSplitOptions.RemoveEmptyEntries);
 
                 string sourceOne = "";
-               
+
                 for (int i = 0; i < source.Length / 2; i++)
                 {
 
@@ -123,8 +124,9 @@ namespace WordsCounter.Models
 
                 }
                 result = ReturnPercents(sourceOne);
-               
-            } catch(Exception ex)
+
+            }
+            catch (Exception ex)
             {
                 result += ex.Message;
             }
@@ -161,7 +163,8 @@ namespace WordsCounter.Models
 
                 }
                 result = ReturnPercents(sourceOne);
-            } catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 result += ex.Message;
             }
