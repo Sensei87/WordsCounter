@@ -12,8 +12,14 @@ namespace WordsCounter.Controllers
 {
     public class DataParserController : Controller
     {
-        DataParser dataParser = new DataParser();
-        IParser parser = new Parser();
+       // DataParser dataParser;
+        IParser _parser;
+
+        public DataParserController( IParser _parser)
+        {
+            this._parser = _parser;
+           
+        }
 
         [HttpGet]
         public IActionResult Index()
@@ -26,27 +32,29 @@ namespace WordsCounter.Controllers
         public IActionResult Index(string reference, int wordCount)
         {
 
-            var list = parser.Pars(reference);
+            var list = _parser.Pars(reference);
             List<string> finalData = new List<string>();
+            string data = "";
+            string percent = "";
 
             foreach (var n in list)
-                dataParser.Data += n;
+                data += n;
 
             switch (wordCount)
             {
                 case 1:
                     {
-                        finalData = parser.OneMutchesOfWord(dataParser.Data);
+                        finalData = _parser.OneMutchesOfWord(data);
                         break;
                     }
                 case 2:
                     {
-                        finalData = parser.TwoMutchesOfWords(dataParser.Data);
+                        finalData = _parser.TwoMutchesOfWords(data);
                         break;
                     }
                 case 3:
                     {
-                        finalData = parser.ThreeMutchesOfWords(dataParser.Data);
+                        finalData = _parser.ThreeMutchesOfWords(data);
                         break;
                     }
                 default:
@@ -58,11 +66,11 @@ namespace WordsCounter.Controllers
 
             foreach(var item in finalData)
             {
-                dataParser.Percent += item;
+                percent += item;
                
             }
             
-            return Content(dataParser.Percent);
+            return Content(percent);
         }
 
 
