@@ -1,0 +1,23 @@
+﻿@model List<string>
+<html>
+    <head>
+     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </head>
+<body>
+    <h2>Repeting words.</h2>
+
+<br />
+<br />
+<table border="1">
+    @foreach(var item in Model)
+    {
+        <tr>
+           <td>@item</td>
+        </tr>
+
+      
+    }
+</table>
+</body>
+</html>

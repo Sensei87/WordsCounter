@@ -34,6 +34,7 @@ namespace WordsCounter.Controllers
 
             var list = _parser.Pars(reference);
             List<string> finalData = new List<string>();
+            var result = new List<string>();
             string data = "";
             string percent = "";
 
@@ -64,13 +65,16 @@ namespace WordsCounter.Controllers
                     }
             }
 
-            foreach(var item in finalData)
+            foreach (var item in finalData)
             {
                 percent += item;
-               
+                var rus = item.Split("\n");
+                foreach (var i in rus)
+                    result.Add(i);
+
             }
-            
-            return Content(percent);
+
+            return View("Result", result);
         }
 
 
