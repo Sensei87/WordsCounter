@@ -12,7 +12,7 @@ namespace WordsCounter.Controllers
 {
     public class DataParserController : Controller
     {
-       // DataParser dataParser;
+       
         IParser _parser;
 
         public DataParserController( IParser _parser)

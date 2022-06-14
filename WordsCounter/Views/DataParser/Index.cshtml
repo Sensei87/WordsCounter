@@ -1,7 +1,7 @@
 ﻿@model WordsCounter.Models.DataParser
 
 @{
-    Layout = null;
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!DOCTYPE html>
@@ -13,11 +13,11 @@
 <body>
     <div class="text-center">
       <form method="post">
-        <label>Input reference</label><br />
+        <label><h3>Input reference</h3></label><br />
         <input type="text" name="reference" /><br /><br />
-        <label>Find matches: 1 word, 2 words, 3 words</label><br />
+        <label><h3>Find matches: 1 word, 2 words, 3 words</h3></label><br />
         <input type="number" name="wordCount" /> <br />
-        <input type="submit" value="Analyze" />
+       <h3> <input type="submit" value="Analyze" /></h3>
       </form>
     </div>
 </body>

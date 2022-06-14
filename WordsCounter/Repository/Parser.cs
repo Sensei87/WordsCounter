@@ -60,7 +60,7 @@ namespace WordsCounter.Repository
         public List<string> OneMutchesOfWord(string text)
         {
             var list = new List<string>();
-            string? result = "";
+            string result = "";
             if (text == null)
             {
                 result = "The reference is null!";
@@ -99,7 +99,7 @@ namespace WordsCounter.Repository
         public List<string> TwoMutchesOfWords(string text)
         {
             var list = new List<string>();
-            string? result = "";
+            string result = "";
             if (text == null)
             {
                 result = "The reference is null!";
@@ -138,7 +138,7 @@ namespace WordsCounter.Repository
         public List<string> ThreeMutchesOfWords(string text)
         {
             var list = new List<string>();
-            string? result = "";
+            string result = "";
             if (text == null)
             {
                 result = "The reference is null!";
@@ -176,7 +176,7 @@ namespace WordsCounter.Repository
         string ReturnPercents(string source)
         {
             string[] subString = source.Split(",");
-            string? result = "";
+            string result = "";
             var finalPercent = 0.0;
             int counter = 1;
             for (int i = 0; i < subString.Length; i++)
