@@ -78,6 +78,11 @@ namespace WordsCounter.Controllers
         }
 
 
+        public IActionResult Privacy()
+        {
+
+            return View("Privacy");
+        }
 
     }
 }

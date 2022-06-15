@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32126.315
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32602.215
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsCounter", "WordsCounter\WordsCounter.csproj", "{048FA2D6-9D6B-4FE4-954A-CE76F370CE9D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordsCounter.Tests", "WordsCounter.Tests\WordsCounter.Tests.csproj", "{7D4AC975-6D03-469A-9DD6-94DE4801A92C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WordsCounter.Tests", "WordsCounter.Tests\WordsCounter.Tests.csproj", "{7D4AC975-6D03-469A-9DD6-94DE4801A92C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
