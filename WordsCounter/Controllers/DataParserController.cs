@@ -28,8 +28,13 @@ namespace WordsCounter.Controllers
             return View();
         }
 
+        public IActionResult RepetWords()
+        {
+            return View();
+        }
+
         [HttpPost]
-        public IActionResult Index(string reference, int wordCount)
+        public IActionResult RepetWords(string reference, int wordCount)
         {
 
             var list = _parser.Pars(reference);

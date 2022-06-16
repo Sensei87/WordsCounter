@@ -1,8 +1,6 @@
 ﻿@model List<string>
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-<html>
+
+    <html>
     <head>
      <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
      <link rel="stylesheet" href="~/css/site.css" />
@@ -10,11 +8,10 @@
     </head>
 <body>
      <div class="text-center">
-    <h2 class="style" style="color:cadetblue">Repeting words.</h2>
+    <h2 class="style" style="color:darkolivegreen">Page Text.</h2>
     </div>
 
 <br />
-
 <table class="table table-striped" border="5">
     @foreach(var item in Model)
     {

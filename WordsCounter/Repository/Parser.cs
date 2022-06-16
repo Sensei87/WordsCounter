@@ -53,7 +53,7 @@ namespace WordsCounter.Repository
 
         }
         // Regex pattern
-        string TagsUsingRegex(string inputString) =>
+       public string TagsUsingRegex(string inputString) =>
          Regex.Replace(inputString, @"\s+", " ");
 
         // Count mutches one words

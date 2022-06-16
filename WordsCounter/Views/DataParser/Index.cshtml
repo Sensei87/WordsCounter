@@ -1,8 +1,5 @@
 ﻿@model WordsCounter.Models.DataParser
 
-@{
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
 
 <!DOCTYPE html>
 <html>
@@ -12,13 +9,12 @@
 </head>
 <body>
     <div class="text-center">
-      <form method="post">
-        <label><h3>Input reference</h3></label><br />
-        <input type="text" name="reference" /><br /><br />
-        <label><h3>Find matches: 1 word, 2 words, 3 words</h3></label><br />
-        <input type="number" name="wordCount" /> <br />
-       <h3> <input type="submit" value="Analyze" /></h3>
-      </form>
+        <h3>If you want to count the number of matching words, then click: Repet Words</h3>
+     <a href="/DataParser/RepetWords" name="RepetWords"><h1>Repet Words</h1></a>
+     <br />
+     <br />
+     <h3>If you just want to parse a web page then click: Pars Web Page</h3>
+     <a href="/ParsOnlyText/Text" name="ParsOnlyText"><h1>Pars Web Page</h1></a>
     </div>
 </body>
 </html>
