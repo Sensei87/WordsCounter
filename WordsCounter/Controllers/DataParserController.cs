@@ -34,9 +34,45 @@ namespace WordsCounter.Controllers
         }
 
         [HttpPost]
-        public IActionResult RepetWords(string reference, int wordCount)
+        public IActionResult RepetWords(string reference)
+        {
+            var result = FindWords(reference, 1);
+
+            return View("Result", result);
+        }
+
+        public IActionResult TwoWords()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult TwoWords(string reference)
+        {
+            var result = FindWords(reference, 2);
+            return View("TwoWordsResult", result);
+        }
+
+        public IActionResult ThreeWords()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ThreeWords(string reference)
+        {
+            var result = FindWords(reference, 3);
+            return View("ThreeWordsResult", result);
+        }
+
+        public IActionResult Privacy()
         {
 
+            return View("Privacy");
+        }
+
+        List<string> FindWords(string reference, int wordCount)
+        {
             var list = _parser.Pars(reference);
             List<string> finalData = new List<string>();
             var result = new List<string>();
@@ -78,16 +114,8 @@ namespace WordsCounter.Controllers
                     result.Add(i);
 
             }
+            return result;
 
-            return View("Result", result);
         }
-
-
-        public IActionResult Privacy()
-        {
-
-            return View("Privacy");
-        }
-
     }
 }

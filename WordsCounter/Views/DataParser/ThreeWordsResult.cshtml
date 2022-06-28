@@ -15,11 +15,11 @@
 
 <br />
  <div class="text-center">
+<a class="btn btn-primary btn-lg" asp-area="" asp-controller="DataParser" asp-action="RepetWords">One word</a>
 <a class="btn btn-primary btn-lg" asp-area="" asp-controller="DataParser" asp-action="TwoWords">Two words</a>
-<a class="btn btn-primary btn-lg" asp-area="" asp-controller="DataParser" asp-action="ThreeWords">Three words</a>
 </div>
 <table class="table table-striped" border="5">
-     <tr><td><h1>One word matches</h1></td></tr>
+      <tr><td><h1>Three words matches</h1></td></tr>
     @foreach(var item in Model)
     {
         <tr>
