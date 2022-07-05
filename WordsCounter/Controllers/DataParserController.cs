@@ -50,7 +50,7 @@ namespace WordsCounter.Controllers
         public IActionResult TwoWords(string reference)
         {
             var result = FindWords(reference, 2);
-            return View("TwoWordsResult", result);
+            return View("Result", result);
         }
 
         public IActionResult ThreeWords()
@@ -62,7 +62,7 @@ namespace WordsCounter.Controllers
         public IActionResult ThreeWords(string reference)
         {
             var result = FindWords(reference, 3);
-            return View("ThreeWordsResult", result);
+            return View("Result", result);
         }
 
         public IActionResult Privacy()
